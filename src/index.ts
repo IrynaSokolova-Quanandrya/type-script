@@ -1,6 +1,6 @@
 /**
  * БАЗОВІ ТИПИ
- * - string, number, null, undefined, any, object, unknown
+ * - string, number, null, undefined, any, unknown
  * - множинні типи з type composition
  */
 
@@ -8,10 +8,10 @@ const userName: string = 'Poly';
 /**
  * UNKNOWN
  */
-let id: unknown;
+// let id: unknown;
 
-id = 10;
-id = '10';
+// id = 10;
+// id = '10';
 
 /**
  * Кастомні типи з Type (назва з великої букви)
@@ -19,8 +19,10 @@ id = '10';
  * - стан з union - коли ми говоримо, що змінна або аргумент може містити кілька типів
  */
 
-// const coords: number[] = [50.12547, 30.458796]
-// const rgb: [number, number, number] = [255, 0, 0]
+// type ArrNum = [number, number, number]
+// const coords: readonly ArrNum = [50.12547, 30.458796]
+// // coords.push(15.5565656)
+// const rgb: number[] = [255, 0, 0]
 
 
 
@@ -46,10 +48,16 @@ const temps = [30, 25, 18, 27]
 // tuple - [number, number]
 // union - 'request' | 'success' | "error"
 
-const userId = 5;
-const taskId = "f54d878e12"
 
-const coords = [50.12547, 30.458796]
+type ID = number | string;
+type Alert = 'request' | 'success' | 'error';
+
+const notification: Alert = 'error';
+
+const userId: ID = 5;
+const taskId: ID = "f54d878e12"
+
+// const coords = [50.12547, 30.458796]
 
 /**
  * Типізація об'єктів
@@ -61,17 +69,29 @@ const coords = [50.12547, 30.458796]
  * - optional params in type
  */
 
-const config = {
+interface PlagConfig{
+    readonly selector: string | number,
+    perPage?: number,
+    statrtIndex?: number,
+    draggable?: boolean
+}
+
+const config: PlagConfig = {
     selector: '#plugin-1',
     perPage: 2,
     statrtIndex: 0,
     draggable: false
 }
 
+interface EmplMoney{
+    [employe: string]: number
+}
+
 const employees = {
     poly: 5,
     kiwi: 10,
-    mango: 15
+    mango: 15,
+    ajax: 50
 }
 
 /**
@@ -80,6 +100,22 @@ const employees = {
  * - дефолтні значення
  * - кастомні значення
  */
+
+enum PizzaSize {
+    Small = 's',
+    Medium = 'm',
+    Large = '50sm'
+}
+
+console.log(PizzaSize.Large);
+PizzaSize.Medium
+
+const order = {
+    size: PizzaSize.Large,
+    quantity: 5
+}
+
+
 
 // enum PizzaSize {
 //     Small = 's',
@@ -102,11 +138,21 @@ const employees = {
  * - key: ()=> type
  * - key?(): type
  */
+type SumFnA = (a: number, b: number, c?: number[])=>void | number
+    
+    
+const fnA: SumFnA = function (param1, param2) {
+    return param1 + param2 
+}
+const fnB: SumFnA = (param1, param2, ...restParams) => {
+    return param1 + param2;
+}
 
 
 
+fnA(5, 5)
 
-
+fnB(10, 10)
 
 // const pizza = {
 //     size: 'large',
