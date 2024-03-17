@@ -87,11 +87,17 @@ interface EmplMoney{
     [employe: string]: number
 }
 
-const employees = {
+const employees: EmplMoney = {
     poly: 5,
     kiwi: 10,
-    mango: 15,
-    ajax: 50
+    mango: 15
+}
+
+const entries = Object.entries(employees)
+//[['poly', 5],['kiwi', 10],['mango', 15]]
+
+for (const [name, value] of entries) {
+    console.log(name, value);
 }
 
 /**

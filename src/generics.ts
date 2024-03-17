@@ -1,25 +1,12 @@
-// Завдання для студентів:
-
-// Створення словника:
-
-// Створіть інтерфейс для словника, де ключем є рядок, а значенням — число.
-// Створіть кілька об'єктів цього типу, наприклад, для зберігання кількості товарів різних категорій.
-
-// Словник із змішаними значеннями:
-
-// Визначте інтерфейс для об'єкта, де ключем є рядок, а значенням може бути або рядок, або число.
-// Створіть декілька об'єктів цього типу.
-
 /**
  * Generics
  * */
 
 // 1. Створюють загальні функції, класи, що можуть працювати з різними вхідними типами і збрерігати типізацію
 
-function identity<T>(arg: T): T {
+function identity<T>(arg: T):T{
   return arg;
 }
-
 
 let output1 = identity<string>("myString");
 let output2 = identity<number>(100);
@@ -36,17 +23,16 @@ let output2 = identity<number>(100);
 
 /**
  * extends та keyof
- */
- 
+ */ 
 
-// function lengthOfObject<T>(obj: T): number {
-//   return obj.length;
-// }
+function lengthOfObject<T extends {length: number}>(param: T):number {
+  return param.length;
+}
 
-// lengthOfObject([10, 11, 12, 13])
-// lengthOfObject('Hello world!')
+lengthOfObject([10, 11, 12, 13])
+lengthOfObject('Hello world!')
 // lengthOfObject(5)
-// lengthOfObject({ name: "Earth", length: 10 }); // 10
+lengthOfObject({ name: "Earth", length: 10 }); // 10
 
 // type obj = {
 // name: string
@@ -56,18 +42,19 @@ let output2 = identity<number>(100);
 // Створіть загальну функцію getProperty, яка приймає об'єкт та ключ як рядок.
 // Функція повинна повертати значення цього ключа з об'єкта.
 
+
 const student = {
   name: "John",
   age: 25,
   groupNumber: 12,
 };
 
-// function getProperty<ObjectType, KeyType extends keyof ObjectType>(obj: ObjectType, key: KeyType): ObjectType[KeyType] {
-//   return obj[key];
-// }
+const getProperty = <T, K extends keyof T>(obj: T, key: K) => {
+    return obj[key]
+}
 
-// let studentName = getProperty(student, "name");
-// console.log(studentName); // "John"
+let studentName = getProperty(student, "name");
+console.log(studentName); // "John"
 
 // let studentAddress = getProperty(student, "address");
 // console.log(studentAddress); // undefined
@@ -77,25 +64,23 @@ const student = {
  * лише його частину
  */
 
-
 type Todo = {
   title: string;
   description: string;
   completed: boolean;
 };
-
-function updateTodo(todo: Todo, fieldsToUpdate: Partial<Todo>): Todo {
-  return { ...todo, ...fieldsToUpdate };
-}
-
 const todo1: Todo = {
   title: "Learn TypeScript",
   description: "Study the basics of TypeScript",
   completed: false,
 };
 
+function updateTodo(todo: Todo, fieldsToUpdate: Partial<Todo>){
+  return { ...todo, ...fieldsToUpdate };
+}
+
 const todo2 = updateTodo(todo1, {
-  description: "Study generics in TypeScript",
+  completed: true,
 });
 
 // console.log(todo2);
@@ -131,39 +116,43 @@ const todo2 = updateTodo(todo1, {
 //   age: number;
 //   address: string;
 // };
+// type Person2 = {
+//      name: string;
+//   age: number;
+// }
 
-// type PersonSummary = Pick<Person, "name" | "age">;
+type PersonSummary = Pick<Person, "name" | "age">;
 
-// const johnSummary: PersonSummary = {
-//   name: "John",
-//   age: 30,
-// };
+const johnSummary: PersonSummary = {
+  name: "John",
+  age: 30,
+};
 
-// // Це спрацює, тому що 'address' не є частиною типу 'PersonSummary'
-// const invalidPerson: PersonSummary = {
-//     name: "Anna",
-//     age: 25,
-//     address: "123 Main St"  // Помилка тут
-// };
+// Це спрацює, тому що 'address' не є частиною типу 'PersonSummary'
+const invalidPerson: PersonSummary = {
+    name: "Anna",
+    age: 25,
+    // address: "123 Main St"  // Помилка тут
+};
 
 /**
  * Omit<T, K> - працює навпаки від попереднього методу Pick, тобто видаляє 
  * властивості які не потрібні з наслідуваного типу 
  */
 
-// type Person = {
-//   name: string;
-//   age: number;
-//   address: string;
-// };
+type Person = {
+  name: string;
+  age: number;
+  address: string;
+};
 
-// type PersonWithoutAddress = Omit<Person, "address">;
+type PersonWithoutAddress = Omit<Person, "address">;
 
-// const john: PersonWithoutAddress = {
-//   name: "John",
-//   age: 30,
-//   // address: "123 Main St" // Ця властивість тут не допустима
-// };
+const john: PersonWithoutAddress = {
+  name: "John",
+  age: 30,
+//   address: "123 Main St" // Ця властивість тут не допустима
+};
 
 
 /**
@@ -171,16 +160,16 @@ const todo2 = updateTodo(todo1, {
  * які ніколи не будуть змінюватися
  */
 
-// type CityDatabase = Record<string, number>;
+type CityDatabase = Record<string, number>;
 
-// const database: CityDatabase = {
-//   Kyiv: 2884000,
-//   Kharkiv: 1441000,
-//   Odesa: 1015000,
-// };
+const database: CityDatabase = {
+  Kyiv: 2884000,
+  Kharkiv: 1441000,
+  Odesa: 1015000,
+};
 
 // // Додаємо новий запис в базу даних, де ключ (ім'я міста) має тип string, а значення (населення) має тип number
-// database.Lviv = 721301;
+database.Lviv = 721301;
 
 
 // interface
