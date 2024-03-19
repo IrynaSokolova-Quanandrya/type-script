@@ -5,7 +5,16 @@ import "./App.css";
 import { useSelector, useDispatch } from "react-redux";
 import { addTodo, deleteTodo } from "./todoSlice";
 import { RootState } from "./store";
-
+/**
+ * 
+ * 1. додаємо redux в проєкт
+ * 2. створюємо слайс
+ * 3. типізуємо стейт
+ * 4. типізуємо action ActionPayload<type>
+ * 5. створюємо store export type RootState = ReturnType<typeof store.getState>;
+ * 6.Додаємо провайдер
+ * 7.Діспачимо екшени та типізуємо стейт в селекторі
+ */
 function App() {
   const todos = useSelector((state: RootState) => state.todos);
   const dispatch = useDispatch();

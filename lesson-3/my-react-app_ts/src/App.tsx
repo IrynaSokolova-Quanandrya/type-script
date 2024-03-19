@@ -4,7 +4,8 @@ import AddTodoForm from "./Components/AddTodoForm";
 import "./App.css";
 
 // Створюємо інтерфейс опису хука usestate Todo
-// Типізуємо методи addTodo та deleteTodo
+// Типізуємо параметри в методах addTodo та deleteTodo
+
 
 function App() {
   const [todos, setTodos] = useState([]);
