@@ -1,12 +1,18 @@
-import React, { useState } from "react";
+import { FC, useState } from "react";
 // створюємо інтерфейс AddTodoFormProps
 // типізуємо компонент FC<>
-const AddTodoForm= ({ onAdd }) => {
+
+interface AddTodoFormProps{
+  onAdd: (text: string)=>void
+}
+
+const AddTodoForm: FC<AddTodoFormProps> = ({ onAdd }) => {
   const [newTodo, setNewTodo] = useState<string>("");
 
   const handleAddClick = () => {
     onAdd(newTodo);
     setNewTodo("");
+    
   };
 
   return (
