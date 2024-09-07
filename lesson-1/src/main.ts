@@ -1,0 +1,35 @@
+/**
+ * Примітиви
+ * Виявлення помилок
+ * any
+ * composes (|)
+*/
+
+let name: string = 'John';
+let age: number = 15;
+const isOnline: boolean = true;
+// const userProgress: null = null;
+// let level: undefined = undefined;
+console.log(name);
+
+const userId: string | number = 1;
+const playerId: string | number = 'khjhg5124scknchg';
+
+
+/**
+ * СКЛАДНІ ТИПИ
+ * 1. type[] або Array<number>
+ *  - readonly - унеможливлює використання методів масиву 
+ *              чи його зміну 
+ *  - tuple на прикладі масив координат `[number, number]`
+ * 2. type як опис об'єктів або коли є перелік сталих значень
+ */
+
+/**
+ * Кастомні типи з Type
+ * - ідентифікатор з type composition 
+ * - кастомний union (коли у змінної може бути лише первне значення)
+ * - composition - number | string
+ * - tuple - [number, number]
+ * - union - 'request' | 'success' | "error"
+ */
