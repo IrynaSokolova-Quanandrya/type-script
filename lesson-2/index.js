@@ -43,19 +43,3 @@ const statusFilters = {
  * - key: ()=> type
  * - key?(): type
  */ 
-
-
-//Описуємо інтерфейс піцци
-// const pizza = {
-//     size: 'large',
-//     toppings: ['souse', 'mushrooms'],
-//     logSize() {
-//         console.log(this.size);
-//     },
-//     getSize() {
-//         return this.size
-//     },
-//     addtopping(topping) {
-//         this.toppings.push(topping)
-//     }
-// }
