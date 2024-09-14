@@ -1,3 +1,11 @@
+
+// let age: unknown;
+
+// age = 15;
+// age = '15';
+
+// age.length
+
 /**
  * Типізація об'єктів
  * - конструкція 'interface'
@@ -8,7 +16,26 @@
  * - optional params in type
  */
 
-const profile = {
+interface IStats {  
+    followers: number,
+    views: number,
+    likes: number,  
+}
+
+interface IProfileConfig {
+  readonly name: string,
+  tag: string,
+  dnd?: boolean,
+  location: string,
+  avatar: string,
+  stats: IStats,
+  getName: () => string,
+  // showavatar: ()=>void,
+  showAvatar(): void,
+  changeLocation: (newlocation: string)=>void
+}
+
+const profile: IProfileConfig = {
     name: 'Jacques Gluke',
     tag: 'jgluke',
     dnd: false,
@@ -18,8 +45,29 @@ const profile = {
       followers: 5603,
       views: 4827,
       likes: 1308,
-    },
-  };
+  },
+  getName() {
+      return this.name
+  },
+  showAvatar() {
+    console.log(this.avatar);
+  },
+  changeLocation(newlocation) {
+    this.location = newlocation
+  }
+};
+
+interface Students {
+  [name:string]: number
+}
+
+const students: Students = {
+  poly: 10,
+  kiwi: 9,
+  ajax: 5,
+  john: 8
+}
+
 
 
 /**
@@ -34,6 +82,33 @@ const statusFilters = {
  completed: "completed",
 };
 
+enum PizzaSize {
+  small = 's',
+  medium = 'm',
+  large = 'l',
+}
+  
+interface IPizza {
+  size: 'small' | 'medium' | 'large',
+  toppings: string[], // додає скільки завгодно додатків
+  logSize: () => void,
+  getSize: () => string,
+  addTopping: (topping: string) => void
+}
+
+const pizza = {
+    size: 'large',
+    toppings: ['souse', 'mushrooms'],
+    logSize() {
+        console.log(this.size);
+    },
+    getSize() {
+        return this.size
+    },
+    addtopping(topping) {
+        this.toppings.push(topping)
+    }
+}
 
 /**
  * ФУНКЦІЇ

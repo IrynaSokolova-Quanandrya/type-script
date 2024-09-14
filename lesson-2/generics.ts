@@ -4,8 +4,8 @@
 
 // 1. Створюють загальні функції, класи, що можуть працювати з різними вхідними типами і збрерігати типізацію
 
-function identity<T>(arg: T):T{
-  return arg;
+function identity<T>(param: T): T{
+  return param;
 }
 
 let output1 = identity<string>("myString");
@@ -15,24 +15,35 @@ let output2 = identity<number>(100);
 
 //  Створіть загальну функцію reverse, яка приймає масив будь-якого типу і повертає масив у зворотньому порядку.
 
-// let numbers = reverse<number>([1, 2, 3, 4, 5]);
-// console.log(numbers); // [5, 4, 3, 2, 1]
+function reverse<T>(arr: T[]): T[] {
+  return arr.reverse()
+}
 
-// let strings = reverse<string>(["a", "b", "c", "d"]);
-// console.log(strings); // ["d", "c", "b", "a"]
+let numbers = reverse<number>([1, 2, 3, 4, 5]);
+console.log(numbers); // [5, 4, 3, 2, 1]
+
+let strings = reverse<string>(["a", "b", "c", "d"]);
+console.log(strings); // ["d", "c", "b", "a"]
 
 /**
  * extends та keyof
  */ 
 
-function lengthOfObject<T extends {length: number}>(param: T):number {
+function lengthOfObject<T extends {length: number}>(param: T): number{
   return param.length;
 }
 
-// type obj = {
-// name: string
-//   length: number
-// }
+interface IObj {
+  name: string
+  length: number
+}
+
+
+lengthOfObject<IObj>({ name: 'Poly', length: 10 })
+lengthOfObject<number[]>([1, 2, 3,])
+lengthOfObject<string>('hello!')
+lengthOfObject<number>(5)// помилка
+
 
 // Створіть загальну функцію getProperty, яка приймає об'єкт та ключ як рядок.
 // Функція повинна повертати значення цього ключа з об'єкта.
@@ -44,8 +55,8 @@ const student = {
   groupNumber: 12,
 };
 
-const getProperty = () => {
-   
+function getProperty<T, K extends keyof T>(obj: T, key: K) {
+   return obj[key]
 }
 
 let studentName = getProperty(student, "name");
@@ -53,6 +64,7 @@ console.log(studentName); // "John"
 
 let studentAddress = getProperty(student, "address");
 console.log(studentAddress); // undefined
+
 
 /**
  * partial < T > - дозволяє вказати TS, що ми можемо передати не весь об'єкт, а
