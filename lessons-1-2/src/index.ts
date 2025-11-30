@@ -4,14 +4,29 @@
  * - множинні типи з type composition
  */
 
-const userName: string = 'Poly';
-/**
- * UNKNOWN
- */
-// let id: unknown;
+let userName: string = 'Student';
+const age: number = 15;
+const isActive: boolean = true;
 
-// id = 10;
-// id = '10';
+const numbers: number[] = [10, 12, 1]
+numbers.push(5)
+
+let str: unknown = 5 
+str = '5'
+str.toFixed()
+
+type Track = {
+    name: string,
+    rating: number,
+    isPopular: boolean
+}
+
+const track: Track = {
+    name: 'Track1',
+    rating: 3,
+    isPopular: true
+}
+
 
 /**
  * Кастомні типи з Type (назва з великої букви)
@@ -36,7 +51,7 @@ const userName: string = 'Poly';
  * 2. type як опис об'єктів або коли є перелік сталих значень
  */
 
-const temps = [30, 25, 18, 27]
+
 
 /**
  * Кастомні типи з Type
@@ -48,16 +63,6 @@ const temps = [30, 25, 18, 27]
 // tuple - [number, number]
 // union - 'request' | 'success' | "error"
 
-
-type ID = number | string;
-type Alert = 'request' | 'success' | 'error';
-
-const notification: Alert = 'error';
-
-const userId: ID = 5;
-const taskId: ID = "f54d878e12"
-
-// const coords = [50.12547, 30.458796]
 
 /**
  * Типізація об'єктів
@@ -107,31 +112,6 @@ for (const [name, value] of entries) {
  * - кастомні значення
  */
 
-enum PizzaSize {
-    Small = 's',
-    Medium = 'm',
-    Large = '50sm'
-}
-
-console.log(PizzaSize.Large);
-PizzaSize.Medium
-
-const order = {
-    size: PizzaSize.Large,
-    quantity: 5
-}
-
-
-
-// enum PizzaSize {
-//     Small = 's',
-//     Medium,
-//     Large
-
-// }
-// console.log(PizzaSize.Large);
-
-
 /**
  * ФУНКЦІЇ
  * - типізація параметрів
@@ -144,33 +124,5 @@ const order = {
  * - key: ()=> type
  * - key?(): type
  */
-type SumFnA = (a: number, b: number, c?: number[])=>void | number
-    
-    
-const fnA: SumFnA = function (param1, param2) {
-    return param1 + param2 
-}
-const fnB: SumFnA = (param1, param2, ...restParams) => {
-    return param1 + param2;
-}
 
-
-
-fnA(5, 5)
-
-fnB(10, 10)
-
-// const pizza = {
-//     size: 'large',
-//     toppings: ['souse', 'mushrooms'],
-//     logSize() {
-//         console.log(this.size);
-//     },
-//     getSize() {
-//         return this.size
-//     },
-//     addtopping(topping) {
-//         this.toppings.push(topping)
-//     }
-// }
 

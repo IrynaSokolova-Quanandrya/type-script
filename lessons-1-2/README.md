@@ -1,18 +1,18 @@
-- +що таке typescript
-- +плюси  та мінуси
-- +npm install -g typescript
-- +tsc --init
-- +tsc
-- +tsc -w
-- +базові типи
+- що таке typescript
+- плюси та мінуси
+- npm install -g typescript
+- tsc --init
+- tsc
+- tsc -w
+- базові типи
 - Складні типи
-- +any
+- any
 - Tuple
-- +unknown
+- unknown
 - Enum
-- Union Type 
+- Union Type
 - Intersection Type
-- return type 
+- return type
 - void
 - function as type
 - optional params in type
