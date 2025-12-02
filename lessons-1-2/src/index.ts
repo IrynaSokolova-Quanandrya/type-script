@@ -81,29 +81,29 @@ interface PlagConfig{
     draggable?: boolean
 }
 
-const config: PlagConfig = {
+const config = {
     selector: '#plugin-1',
     perPage: 2,
     statrtIndex: 0,
     draggable: false
 }
 
-interface EmplMoney{
-    [employe: string]: number
-}
+// interface EmplMoney{
+//     [employe: string]: number
+// }
 
-const employees: EmplMoney = {
-    poly: 5,
-    kiwi: 10,
-    mango: 15
-}
+// const employees = {
+//     poly: 5,
+//     kiwi: 10,
+//     mango: 15
+// }
 
-const entries = Object.entries(employees)
-//[['poly', 5],['kiwi', 10],['mango', 15]]
+// const entries = Object.entries(employees)
+// //[['poly', 5],['kiwi', 10],['mango', 15]]
 
-for (const [name, value] of entries) {
-    console.log(name, value);
-}
+// for (const [name, value] of entries) {
+//     console.log(name, value);
+// }
 
 /**
  * ENUM (перераховування)
@@ -126,3 +126,23 @@ for (const [name, value] of entries) {
  */
 
 
+interface Employees {
+  [empolyee: string]: number;
+total(): number
+}
+
+const employees: Employees = {
+  poly: 5,
+  kiwi: 10,
+  mango: 15,
+
+  total(){
+    const valuesArr = Object.values(this)
+    let total = 0
+    for(let employee of valuesArr){
+        total += employee
+    }
+    return total
+
+  }
+};
