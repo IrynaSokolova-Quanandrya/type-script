@@ -15,11 +15,15 @@ let output2 = identity<number>(100);
 
 //  Створіть загальну функцію reverse, яка приймає масив будь-якого типу і повертає масив у зворотньому порядку.
 
-// let numbers = reverse<number>([1, 2, 3, 4, 5]);
-// console.log(numbers); // [5, 4, 3, 2, 1]
+function revers<T>(arr: T[]): T[] {
+  return arr.reverse()
+}
 
-// let strings = reverse<string>(["a", "b", "c", "d"]);
-// console.log(strings); // ["d", "c", "b", "a"]
+let numbers = reverse<number>([1, 2, 3, 4, 5]);
+console.log(numbers); // [5, 4, 3, 2, 1]
+
+let strings = reverse<string>(["a", "b", "c", "d"]);
+console.log(strings); // ["d", "c", "b", "a"]
 
 /**
  * extends та keyof
@@ -31,7 +35,7 @@ function lengthOfObject<T extends {length: number}>(param: T):number {
 
 lengthOfObject([10, 11, 12, 13])
 lengthOfObject('Hello world!')
-// lengthOfObject(5)
+lengthOfObject(5)
 lengthOfObject({ name: "Earth", length: 10 }); // 10
 
 // type obj = {
@@ -49,8 +53,8 @@ const student = {
   groupNumber: 12,
 };
 
-const getProperty = <T, K extends keyof T>(obj: T, key: K) => {
-    return obj[key]
+function getProperty<T, K extends keyof T>(studentObj: T, objKey: K) {
+  return studentObj[objKey]
 }
 
 let studentName = getProperty(student, "name");
